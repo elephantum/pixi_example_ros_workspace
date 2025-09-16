@@ -1,6 +1,7 @@
 import sys
 import rclpy
 from rclpy.node import Node
+from rclpy.utilities import remove_ros_args
 from geometry_msgs.msg import Point
 import argparse
 
@@ -25,8 +26,18 @@ def main(args=None):
     parser.add_argument('x', type=float, help='X coordinate')
     parser.add_argument('y', type=float, help='Y coordinate')
 
+    # Use the canonical ROS2 way to remove ROS arguments
+    if args is None:
+        args = sys.argv[1:]
+    
+    # Remove ROS-specific arguments before parsing with argparse
+    filtered_args = remove_ros_args(args)
+    
+    # If no arguments provided after filtering, show help
+    if not filtered_args:
+        filtered_args = ['--help']
 
-    args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
+    args = parser.parse_args(filtered_args)
 
 
     try:

@@ -5,7 +5,7 @@ preview = ["pixi-build"]
 
 [tasks]
 sim = "ros2 run turtlesim turtlesim_node"
-talker = "ros2 run talker_py talker"
+talker = "ros2 launch talker_py talker_launch.py"
 navigator = "ros2 run navigator navigator"
 navigator_py = "ros2 run navigator_py navigator"
 

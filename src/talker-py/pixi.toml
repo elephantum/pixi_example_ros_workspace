@@ -4,3 +4,7 @@ version = "*"
 
 [package.build.config]
 distro = "humble"
+extra_input_globs = [
+    "launch/**", 
+    "**/*.py",
+]
